@@ -113,6 +113,9 @@ func setColor(config *Config) {
 	config.Color = color
 }
 
+// A really simple program to interact with the CircuitPython serial console
+// on the Adafruit Feather RP2040. A very dumb loop waits for input on the RP2040
+// and animates the color to the RGB LED.
 func main() {
 	config := parseFlags()
 	if config.Debug {
