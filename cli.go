@@ -73,6 +73,22 @@ func parseFlags() Config {
 	return config
 }
 
+func sendColor(config Config, portName string, color string) {
+	port, err := openSerialPort(portName)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	n, err := port.Write([]byte(fmt.Sprintf("%s\n\r", color))) // serial needs CR+LF to be acknowledged by CircuitPython
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if config.Debug {
+		log.Printf("%d bytes written\n", n)
+	}
+}
+
 func setColor(config Config) string {
 	color := "0"
 	switch {
@@ -99,18 +115,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	port, err := openSerialPort(portName)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	n, err := port.Write([]byte(fmt.Sprintf("%s\n\r", color))) // serial needs CR+LF to be acknowledged by CircuitPython
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	if config.Debug {
-		log.Printf("%d bytes written\n", n)
-	}
-
+	sendColor(config, portName, color)
 }
