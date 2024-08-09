@@ -4,7 +4,7 @@ import time
 import neopixel
 
 from adafruit_led_animation.animation.pulse import Pulse
-from adafruit_led_animation.color import GREEN, BLUE, RED, BLACK
+from adafruit_led_animation.color import GREEN, BLUE, RED, BLACK, AMBER
 
 print("waiting for input...")
 rgb = False
@@ -30,6 +30,8 @@ while True:
           pulse = Pulse(pixels, speed=speed, color=GREEN)
         elif value == 'b':
           pulse = Pulse(pixels, speed=speed, color=BLUE)
+        elif value == 'y':
+          pulse = Pulse(pixels, speed=speed, color=AMBER)
         elif value=='f':
           pixels.brightness = 1.0
         elif value=='d':
