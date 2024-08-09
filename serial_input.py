@@ -14,6 +14,9 @@ speed = 0.1
 pixels = neopixel.NeoPixel(pixel_pin, pixel_num, brightness=0.2, auto_write=False)  
 pulse = Pulse(pixels, speed=speed, color=BLACK);
 
+# Pieced together from tutorials:
+# https://stackoverflow.com/questions/48922189/receive-data-from-host-computer-using-circuit-python-on-circuit-playground-expre
+# https://learn.adafruit.com/circuitpython-led-animations
 while True:
     if supervisor.runtime.serial_bytes_available:
         value = input().strip()
